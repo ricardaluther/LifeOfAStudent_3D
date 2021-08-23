@@ -1,0 +1,13 @@
+﻿# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/.idea.LifeOfAStudent_3D.iml
+/modules.xml
+/contentModel.xml
+/projectSettingsUpdater.xml
+# Datasource local storage ignored files
+/../../../../../../../../../../../../:\Users\RicardaLuther\Documents\Uni\Master\Due\Advanced topics in Unity\LifeOfAStudent_3D\.idea\.idea.LifeOfAStudent_3D\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
