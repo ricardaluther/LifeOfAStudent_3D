@@ -7,7 +7,7 @@ public class ActivePoint : MonoBehaviour
     public CapsuleCollider col;
     public AudioClip ActivePointSound;
     
-    [SerializeField] private GameObject _player;
+    [SerializeField] private Player _player;
 
 
     // Start is called before the first frame update
@@ -31,7 +31,7 @@ public class ActivePoint : MonoBehaviour
             Debug.LogWarning("Character activated ActivePoint:D...let the games begin");
             //Destroy(this.gameObject);
             AudioSource.PlayClipAtPoint(ActivePointSound, transform.position);
-            _player.LocationChange(-2.0f, -8.0f, 0.0f);
+            _player.LocationChange(-1.0f, 0.0f, -15.0f);
 
         }
 

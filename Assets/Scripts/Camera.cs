@@ -10,7 +10,7 @@ public class Camera : MonoBehaviour
     void Start()
     {
         transform.position = new Vector3(0f, 1.0f, -1.86f);
-        transform.Rotate(12.0f, 0.0f, 0.0f);
+        transform.Rotate(5.0f, 0.0f, 0.0f);
     }
 
     // Update is called once per frame
