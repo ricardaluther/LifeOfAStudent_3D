@@ -59,4 +59,12 @@ public class Player : MonoBehaviour
      
 
     }
+
+    //gets called, when the player enters an ActivePoint...ok, it doesn't work yet
+    public void LocationChange(float x, float y, float z)
+    {
+       // rb = GetComponent<Rigidbody>();
+       // col = GetComponent<BoxCollider>();
+        this.transform.position = new Vector3(x, y, z);
+    }
 }
