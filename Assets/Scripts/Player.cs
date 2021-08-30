@@ -40,9 +40,19 @@ public class Player : MonoBehaviour
         // pass basic movements to playertranslate
      float horizontalInput = Input.GetAxis("Horizontal");
      float verticalInput = Input.GetAxis("Vertical");
-     Vector3 playerTranslate = new Vector3(1f * horizontalInput * _speed * Time.deltaTime,
-               0f,
-               1f * verticalInput * _speed * Time.deltaTime);
+     
+     
+     //-------------------------------------- Old movement Stuff -------------------------
+     //Vector3 playerTranslate = new Vector3(1f * horizontalInput * _speed * Time.deltaTime,
+       //        0f,
+         //      1f * verticalInput * _speed * Time.deltaTime);
+         // ---------------------------New version related to camera changes:-------------------------
+
+         Vector3 playerTranslate = transform.right * horizontalInput + transform.forward * verticalInput;
+
+        //-----------------------------------------------------------------------------
+    
+    
      // is the player is grounded and we press space, allow the player to doublejump and apply _jumpspeed to the direction Y of the playertranslate
      if (_controller.isGrounded && Input.GetKeyDown(KeyCode.Space))
      {
@@ -62,7 +72,7 @@ public class Player : MonoBehaviour
      // apply gravity to the y-direction, pass the y-direction to the playertranslate and pass the playertranslate to the controller
      _directionY -= _gravity * Time.deltaTime;
      playerTranslate.y = _directionY;
-     _controller.Move(playerTranslate);
+     _controller.Move(playerTranslate * _speed * Time.deltaTime);
     }
 
     //gets called, when the player enters an ActivePoint
