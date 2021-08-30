@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _lives = 3;
     [SerializeField]
-    private float _speed = 5f;
+    private float _speed = 7f;
     [SerializeField] 
     private float _jumpSpeed = 4f;
     [SerializeField]
