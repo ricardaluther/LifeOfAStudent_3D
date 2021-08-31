@@ -7,6 +7,8 @@ public class Book : MonoBehaviour
     public Vector3 desiredPos;
 
     private Vector3 closetoPlayer;
+
+    private Vector3 playerPos;
     
     [Header("Timers")]
     [SerializeField] public float timer1 = 1f;
@@ -49,20 +51,24 @@ public class Book : MonoBehaviour
         timer2 += Time.deltaTime * timerSpeed;
         timer3 += Time.deltaTime * timerSpeed;
         
+        //book will follow player until it hit the player
         if (timer3 >= TimeToAttack)
         {
-            transform.position = Vector3.Lerp(transform.position, GameObject.FindGameObjectWithTag("Character").transform.position, Time.deltaTime * speed);
-            if (Vector3.Distance(transform.position, desiredPos) <= 0.01f)
+            playerPos = GameObject.FindGameObjectWithTag("Character").transform.position;
+            transform.position = Vector3.Lerp(transform.position, playerPos, Time.deltaTime * speed);
+            if (Vector3.Distance(transform.position, playerPos) <= 0.1f)
             {
                 rewriteDesPos();
                 timer3 = 0.0f;
             }
         }
+        //book will go close to the player
         else if (timer2 >= TimeToSeek)
         {
-            closetoPlayer = new Vector3(GameObject.FindGameObjectWithTag("Character").transform.position.x + Random.Range(-5f, 5f), yPos, GameObject.FindGameObjectWithTag("Character").transform.position.z + Random.Range(-5f, 5f));
+            playerPos = GameObject.FindGameObjectWithTag("Character").transform.position;
+            closetoPlayer = new Vector3(playerPos.x + Random.Range(-5f, 5f), yPos, playerPos.z + Random.Range(-5f, 5f));
             transform.position = Vector3.Lerp(transform.position, closetoPlayer, Time.deltaTime * speed);
-            if (Vector3.Distance(transform.position, desiredPos) <= 0.01f)
+            if (Vector3.Distance(transform.position, closetoPlayer) <= 0.1f)
             {
                 rewriteDesPos();
                 timer2 = 0.0f;
