@@ -79,7 +79,10 @@ public class Player : MonoBehaviour
     public void LocationChange(float x, float y, float z)
     {
        // rb = GetComponent<Rigidbody>();
-       // col = GetComponent<BoxCollider>();
+        // col = GetComponent<BoxCollider>();
+ 		//Debug.LogWarning("LocationChange called");
+		_controller.enabled = false;
         this.transform.position = new Vector3(x, y, z);
+		_controller.enabled = true;
     }
 }
