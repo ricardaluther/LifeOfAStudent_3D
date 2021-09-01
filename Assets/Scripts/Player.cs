@@ -85,4 +85,11 @@ public class Player : MonoBehaviour
         this.transform.position = new Vector3(x, y, z);
 		_controller.enabled = true;
     }
+    
+    
+    //getter for the lives variable
+    public int GetLives()
+    {
+        return _lives;
+    }
 }
