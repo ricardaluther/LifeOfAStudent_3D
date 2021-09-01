@@ -2,27 +2,28 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = System.Random;
+//using Random = System.Random;
 
 //spawn manager blueprint:
 public class SpawnManager : MonoBehaviour
 {
-   // [SerializeField]
-   // private GameObject _somePrefab;
+    [SerializeField]
+    private GameObject _somePrefab;
 
    //Spawn delay
    [SerializeField] 
    private float _delay = 2f;
     
-   //Controls whether prefab instances are be spawned
+   //Controls whether prefab instances are spawned
    //Question: what controls this? Player class? some central control class?
-   private Boolean _spawnStuff;
+   public Boolean _spawnStuff;
    
     // Start is called before the first frame update
     void Start()
     {
         //to be replaced later...
         _spawnStuff = false;
+        StartCoroutine(SpawnSystem());
     }
 
     // Update is called once per frame
@@ -33,13 +34,16 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnSystem()
     {
-        while (_spawnStuff)
+        while (true)
         {
-            //Spawn prefab:
-           // Instantiate(_somePrefab, new Vector3(Random.Range(xRange),
-           // Random.Range(yRange),
-           // Random.Range(zRange), Quaternion.identity);
-           //Delay:
+            //Spawn prefab in an area:
+            if (_spawnStuff)
+            {
+                Instantiate(_somePrefab, new Vector3(UnityEngine.Random.Range(-10f, 10f),
+                    UnityEngine.Random.Range(0f, 20f),
+                    UnityEngine.Random.Range(-10f,10f)), Quaternion.identity);
+            }
+            //Delay:
            yield return new WaitForSeconds(_delay);
         }
     }
