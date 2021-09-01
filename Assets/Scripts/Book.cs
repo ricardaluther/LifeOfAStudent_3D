@@ -8,6 +8,8 @@ public class Book : MonoBehaviour
     
     private Vector3 playerPos;
     
+    public AudioClip failure;
+
     [Header("Timers")]
     [SerializeField] public float timer1 = 0.0f; //this timer decides the time of the general random movement
 
@@ -165,16 +167,18 @@ public class Book : MonoBehaviour
     }
 
 
-    /*
-    private Vector3 GetRoamingPosition()
+    private void OnTriggerEnter(Collider other)
     {
-        return startingPosition + GetRandomDir() * Random.Range(10f, 70f);
-    }
+        Debug.Log(other.name);
 
-    //returns a random Vector3
-    public static Vector3 GetRandomDir()
-    {
-        return new Vector3(UnityEngine.Random.Range(-1f, 1f), 0.88f, UnityEngine.Random.Range(-1f, 1f)).normalized;
+        if (other.CompareTag("Character"))
+        {
+            Debug.LogWarning("Book hit Player:O");
+            //Destroy(this.gameObject); // maybe implement this later when we actually spawn more of them...
+            //reduce the points or something of player
+            AudioSource.PlayClipAtPoint(failure, transform.position);
+
+
+        }
     }
-    */
 }
