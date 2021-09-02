@@ -26,7 +26,7 @@ public class ActivePoint : MonoBehaviour
     {
         //Debug.Log(other.name);
 
-        if (other.CompareTag("Character"))
+        if (other.CompareTag("Player"))
         {
             //Debug.LogWarning("Character activated ActivePoint:D...let the games begin");
             //Destroy(this.gameObject);

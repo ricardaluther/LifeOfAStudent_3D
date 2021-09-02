@@ -126,13 +126,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   desiredPos: {x: 0, y: 0, z: 0}
+  failure: {fileID: 8300000, guid: cd45e07afe09624449b788c244e21ce6, type: 3}
   timer1: 0
   timer2: 0
   timer3: 0
   timer4: 0
   TimeToSeek: 5
   TimeToAttack: 15
-  TimeToLocatePlayer: 2
   timerSpeed: 1
   timeToMove: 0.1
   speed: 2
