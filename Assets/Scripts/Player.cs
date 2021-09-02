@@ -20,8 +20,8 @@ public class Player : MonoBehaviour
     private bool _readyDoubleJump;
     private CharacterController _controller;
     private Animation anim;
-   
-    
+    private BoxCollider col;
+
 
 
     void Start()
@@ -85,11 +85,12 @@ public class Player : MonoBehaviour
     public void LocationChange(float x, float y, float z)
     {
        // rb = GetComponent<Rigidbody>();
-        // col = GetComponent<BoxCollider>();
- 		//Debug.LogWarning("LocationChange called");
-		_controller.enabled = false;
-        this.transform.position = new Vector3(x, y, z);
-		_controller.enabled = true;
+       // col = GetComponent<BoxCollider>();
+ 		Debug.LogWarning("LocationChange called");
+		//_controller.enabled = false;
+        //this.transform.position = new Vector3(x, y, z);
+		//_controller.enabled = true;
+        _controller.Move(new Vector3(x, y, z));
     }
     
     
