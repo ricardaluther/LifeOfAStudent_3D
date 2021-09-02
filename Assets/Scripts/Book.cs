@@ -5,19 +5,23 @@ using UnityEngine;
 public class Book : MonoBehaviour
 {
     public Vector3 desiredPos;
-
-    private Vector3 closetoPlayer;
-
+    
     private Vector3 playerPos;
     
-    [Header("Timers")]
-    [SerializeField] public float timer1 = 1f;
+    public AudioClip failure;
 
-    [SerializeField] public float timer2 = 1f;
-    [SerializeField] public float timer3 = 1f;
+    [Header("Timers")]
+    [SerializeField] public float timer1 = 0.0f; //this timer decides the time of the general random movement
+
+    [SerializeField] public float timer2 = 0.0f; // decides when it is time to seek the closeness of the player
+    [SerializeField] public float timer3 = 0.0f; // decides when time to attack
+
+    [SerializeField] private float timer4 = 0.0f; // decides when to update the current position(Vector3) of the player
     [SerializeField] private float TimeToSeek = 10f;
 
-    [SerializeField] private float TimeToAttack = 30f; 
+    [SerializeField] private float TimeToAttack = 30f;
+
+    private float TimeToLocatePlayer = 2.0f;
     
     public float timerSpeed = 1f;
     public float timeToMove = 2f;
@@ -28,6 +32,9 @@ public class Book : MonoBehaviour
     [SerializeField] private float xPos;
     [SerializeField] private float yPos = 0.88f;
     [SerializeField] private float zPos;
+
+    [SerializeField] private Vector3 lastPlayerPos;
+    [SerializeField] private Vector3 closetoPlayer;
     
 // TODO: spawn more books, destroy book if it hits player + sound, check the wierd movement in seek(vll weil man sich ständig bewegt und so die Position die nahe des Players kalkuliert wurde nie erreicht wird...)/ attack, 
 
@@ -43,6 +50,18 @@ public class Book : MonoBehaviour
         MovePlayer();
        // SeekPlayer();
         // AttackPlayer();
+        LocatePlayerCloseArea();
+    }
+
+    private void LocatePlayerCloseArea()
+    {
+        timer4 += Time.deltaTime * timerSpeed;
+        if (timer4 >= TimeToLocatePlayer)
+        {
+            lastPlayerPos = GameObject.FindGameObjectWithTag("Character").transform.position;
+            timer4 = 0.0f;
+            closetoPlayer = new Vector3(lastPlayerPos.x + Random.Range(-10.0f, 10.0f), yPos, lastPlayerPos.z + Random.Range(-10.0f, 10.0f));
+        }
     }
 
     private void MovePlayer()
@@ -60,20 +79,24 @@ public class Book : MonoBehaviour
             {
                 rewriteDesPos();
                 timer3 = 0.0f;
+                timer2 = 0.0f; //if it attacked the player it doesn't need to seek right away after.... 
+                timer1 = 0.0f;
             }
         }
         //book will go close to the player
         else if (timer2 >= TimeToSeek)
         {
-            playerPos = GameObject.FindGameObjectWithTag("Character").transform.position;
-            closetoPlayer = new Vector3(playerPos.x + Random.Range(-5f, 5f), yPos, playerPos.z + Random.Range(-5f, 5f));
+            timer1 = 0.0f; // if it seeks it doesn't have to move normally at the same time...
+            // is being done in LocatePlayerCloseArea()...
+            //playerPos = GameObject.FindGameObjectWithTag("Character").transform.position;
+            //closetoPlayer = new Vector3(playerPos.x + Random.Range(-15.0f, 15.0f), yPos, playerPos.z + Random.Range(-10.0f, 10.0f));
             transform.position = Vector3.Lerp(transform.position, closetoPlayer, Time.deltaTime * speed);
-            if (Vector3.Distance(transform.position, closetoPlayer) <= 0.1f)
+            if (Vector3.Distance(transform.position, closetoPlayer) <= 2.0f)
             {
                 rewriteDesPos();
                 timer2 = 0.0f;
             }
-        }
+        } 
         else if (timer1 >= timeToMove)
         {
             transform.position = Vector3.Lerp(transform.position, desiredPos, Time.deltaTime * speed);
@@ -90,7 +113,7 @@ public class Book : MonoBehaviour
         //check for boundaries and assign a new x and z coordinate
 
         //new x
-        xPos = transform.position.x + Random.Range(-10f, 10f);
+        xPos = transform.position.x + Random.Range(-20f, 20f);
         if (xPos < -50f)
         {
             xPos = -50f;
@@ -144,16 +167,18 @@ public class Book : MonoBehaviour
     }
 
 
-    /*
-    private Vector3 GetRoamingPosition()
+    private void OnTriggerEnter(Collider other)
     {
-        return startingPosition + GetRandomDir() * Random.Range(10f, 70f);
-    }
+        Debug.Log(other.name);
 
-    //returns a random Vector3
-    public static Vector3 GetRandomDir()
-    {
-        return new Vector3(UnityEngine.Random.Range(-1f, 1f), 0.88f, UnityEngine.Random.Range(-1f, 1f)).normalized;
+        if (other.CompareTag("Character"))
+        {
+            Debug.LogWarning("Book hit Player:O");
+            //Destroy(this.gameObject); // maybe implement this later when we actually spawn more of them...
+            //reduce the points or something of player
+            AudioSource.PlayClipAtPoint(failure, transform.position);
+
+
+        }
     }
-    */
 }
