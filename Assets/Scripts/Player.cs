@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     private float _directionY;
     private bool _readyDoubleJump;
     private CharacterController _controller;
-    public BoxCollider col;
+    private Animation anim;
    
     
 
@@ -27,8 +27,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         _controller = GetComponent<CharacterController>();
-        col = GetComponent<BoxCollider>();
         transform.position = new Vector3(0f, 0f, 0f);
+        anim = gameObject.GetComponent<Animation>();
     }
    
     void Update()
@@ -40,8 +40,15 @@ public class Player : MonoBehaviour
         // pass basic movements to playertranslate
      float horizontalInput = Input.GetAxis("Horizontal");
      float verticalInput = Input.GetAxis("Vertical");
-     
-     
+
+     if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+     {
+         anim.Play("Run");
+     }
+     else
+     {
+         anim.Play("Idle");
+     }
      //-------------------------------------- Old movement Stuff -------------------------
      //Vector3 playerTranslate = new Vector3(1f * horizontalInput * _speed * Time.deltaTime,
        //        0f,
@@ -66,7 +73,6 @@ public class Player : MonoBehaviour
          {
              _directionY = _jumpSpeed * 0.5f;
              _readyDoubleJump = false;
-             
          }
      }
      // apply gravity to the y-direction, pass the y-direction to the playertranslate and pass the playertranslate to the controller
