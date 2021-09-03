@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     private int _lives = 3;
 
     public bool _drunk = false;
-    private float _soberingTime = 4f;
+    private float _soberingTime = 10f;
 
     [SerializeField] private float _speed = 7f;
     [SerializeField] private float _jumpSpeed = 4f;
@@ -72,7 +72,14 @@ public class Player : MonoBehaviour
         // apply gravity to the y-direction, pass the y-direction to the playertranslate and pass the playertranslate to the controller
         _directionY -= _gravity * Time.deltaTime;
         playerTranslate.y = _directionY;
-        _controller.Move(playerTranslate * _speed * Time.deltaTime);
+        if (!_drunk)
+        {
+            _controller.Move(playerTranslate * _speed * Time.deltaTime);
+        }
+        else if (_drunk)
+        {
+            _controller.Move(new Vector3(-playerTranslate.x, playerTranslate.y, -playerTranslate.z) * _speed * Time.deltaTime);
+        }
     }
 
     //gets called, when the player enters an ActivePoint
@@ -85,14 +92,14 @@ public class Player : MonoBehaviour
     public void GetDrunk()
     {
         _drunk = true;
-        //StartCoroutine(SoberUp());
+        StartCoroutine(SoberUp());
     }
 
-    //IEnumerator SoberUp()
-    //{
-     //   yield return WaitForSeconds(_soberingTime);
-      //  _drunk = false;
-    //}
+    IEnumerator SoberUp()
+    {
+        yield return new WaitForSeconds(_soberingTime);
+        _drunk = false;
+    }
     //getter for the lives variable
     public int GetLives()
     {

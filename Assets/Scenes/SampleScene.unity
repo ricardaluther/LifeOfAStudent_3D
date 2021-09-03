@@ -279,7 +279,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 144421457}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.44, y: 2.25, z: -2.9818404}
+  m_LocalPosition: {x: -6.13, y: 2.25, z: -2.9818404}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -615,11 +615,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b709458d6c1c0d347829745071e37cd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bookPrefabs:
+  _enemiesPrefabs:
   - {fileID: 1173945769684884, guid: 8eabee3a247b5fe41bfdcf4b301c41a6, type: 3}
   - {fileID: 1180002230424376, guid: 31a995afe3fc9f54ca95ab3cc78b6800, type: 3}
   - {fileID: 1605148390852154, guid: 8c327ec2627a0df46a0e82d80aaaef96, type: 3}
   - {fileID: 1847399388852780, guid: 6bdd18994543e264491fb71fed626cae, type: 3}
+  - {fileID: 1352519850152638, guid: 293ec170ec9912240b5765c4cf87f845, type: 3}
   _delay: 2
   _spawnStuff: 1
 --- !u!4 &1224233400
@@ -2331,7 +2332,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 0.5
+  m_Radius: 1
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.05
@@ -2350,6 +2351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lives: 3
+  _drunk: 0
   _speed: 7
   _jumpSpeed: 4
   _gravity: 9.81
@@ -2447,8 +2449,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.8852854, y: 9.834608, z: 1}
-  m_Center: {x: -0.40393972, y: 4.417304, z: 0}
+  m_Size: {x: 8.126152, y: 9.834608, z: 1.6087391}
+  m_Center: {x: -0.17226434, y: 4.417304, z: 0.30436957}
 --- !u!1 &2208117574220957559
 GameObject:
   m_ObjectHideFlags: 0

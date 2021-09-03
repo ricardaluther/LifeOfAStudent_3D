@@ -11,9 +11,8 @@ using Random = System.Random;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField]
-    private List<GameObject> _bookPrefabs;
+    private List<GameObject> _enemiesPrefabs;
 
-    private GameObject _winePrefab;
 
    //Spawn delay
    [SerializeField] 
@@ -39,20 +38,15 @@ public class SpawnManager : MonoBehaviour
     
     IEnumerator SpawnSystem()
     {
-        while (true)
+        //Spawn prefab in an area:
+        while(_spawnStuff)
         {
-            //Spawn prefab in an area:
-            if (_spawnStuff)
-            {
-                Instantiate(_bookPrefabs[UnityEngine.Random.Range(0, 4)], new Vector3(
+            Instantiate(_enemiesPrefabs[UnityEngine.Random.Range(0, 5)], new Vector3(
                     UnityEngine.Random.Range(-10f, 10f),
-                    UnityEngine.Random.Range(0f, 20f),
+                    UnityEngine.Random.Range(0f, 2f),
                     UnityEngine.Random.Range(-10f, 10f)), Quaternion.identity);
-            }
-            //Delay:
-           yield return new WaitForSeconds(_delay);
+            yield return new WaitForSeconds(_delay);
         }
-        
-        
+        Destroy(this.gameObject);
     }
 }
