@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33321763385282488}
   - component: {fileID: 23982853148549452}
   - component: {fileID: 65490317273505928}
-  - component: {fileID: 9079186493669859618}
+  - component: {fileID: 2264802315219931690}
   m_Layer: 0
   m_Name: Book_01
   m_TagString: Book
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1173945769684884}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -96,7 +96,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.14499976, y: 0.20500046, z: 0.020000048}
   m_Center: {x: -0.07249973, y: 0.10250023, z: 0.009999858}
---- !u!114 &9079186493669859618
+--- !u!114 &2264802315219931690
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

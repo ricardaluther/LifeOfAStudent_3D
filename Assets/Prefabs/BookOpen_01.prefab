@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33573363024778178}
   - component: {fileID: 23575417346388712}
   - component: {fileID: 65438262803937892}
-  - component: {fileID: 3101068785481919084}
+  - component: {fileID: 4848981710342936486}
   m_Layer: 0
   m_Name: BookOpen_01
   m_TagString: Book
@@ -96,7 +96,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.29400024, y: 0.014445382, z: 0.20500013}
   m_Center: {x: 0.0019999743, y: 0.0072230264, z: -0.10249978}
---- !u!114 &3101068785481919084
+--- !u!114 &4848981710342936486
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
