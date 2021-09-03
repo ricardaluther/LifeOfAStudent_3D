@@ -2,13 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = System.Random;
+
+
 //using Random = System.Random;
 
 //spawn manager blueprint:
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _somePrefab;
+    private List<GameObject> _bookPrefabs;
+
+    private GameObject _winePrefab;
 
    //Spawn delay
    [SerializeField] 
@@ -22,7 +27,7 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         //to be replaced later...
-        _spawnStuff = false;
+        //_spawnStuff = false;
         StartCoroutine(SpawnSystem());
     }
 
@@ -31,7 +36,7 @@ public class SpawnManager : MonoBehaviour
     {
         
     }
-
+    
     IEnumerator SpawnSystem()
     {
         while (true)
@@ -39,12 +44,15 @@ public class SpawnManager : MonoBehaviour
             //Spawn prefab in an area:
             if (_spawnStuff)
             {
-                Instantiate(_somePrefab, new Vector3(UnityEngine.Random.Range(-10f, 10f),
+                Instantiate(_bookPrefabs[UnityEngine.Random.Range(0, 4)], new Vector3(
+                    UnityEngine.Random.Range(-10f, 10f),
                     UnityEngine.Random.Range(0f, 20f),
-                    UnityEngine.Random.Range(-10f,10f)), Quaternion.identity);
+                    UnityEngine.Random.Range(-10f, 10f)), Quaternion.identity);
             }
             //Delay:
            yield return new WaitForSeconds(_delay);
         }
+        
+        
     }
 }
