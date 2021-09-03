@@ -174,7 +174,7 @@ public class Book : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             //Debug.LogWarning("Book hit Player:O");
-            //Destroy(this.gameObject); // maybe implement this later when we actually spawn more of them...
+            Destroy(this.gameObject); // maybe implement this later when we actually spawn more of them...
             
             //reduce the points or something of player
             AudioSource.PlayClipAtPoint(failure, transform.position);
