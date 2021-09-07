@@ -26,17 +26,14 @@ public class ActivePoint : MonoBehaviour
     {
         //Debug.Log(other.name);
 
-        if (other.CompareTag("Character"))
+        if (other.CompareTag("Player"))
         {
-            //Debug.LogWarning("Character activated ActivePoint:D...let the games begin");
+            Debug.LogWarning("Character activated ActivePoint:D...let the games begin");
             //Destroy(this.gameObject);
 			_player.LocationChange(-1.0f, 0.0f, -15.0f); //calls the Player Script and relocates the player
             AudioSource.PlayClipAtPoint(ActivePointSound, transform.position);
-           
-
+            
         }
-
-
 
     }
 }

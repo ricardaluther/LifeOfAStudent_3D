@@ -36,7 +36,7 @@ public class Book : MonoBehaviour
     [SerializeField] private Vector3 lastPlayerPos;
     [SerializeField] private Vector3 closetoPlayer;
     
-// TODO: spawn more books, destroy book if it hits player + sound, check the wierd movement in seek(vll weil man sich ständig bewegt und so die Position die nahe des Players kalkuliert wurde nie erreicht wird...)/ attack, 
+// TODO: spawn more books, destroy book if it hits player + sound if gets hit or hits player 
 
     void Start()
     {
@@ -58,7 +58,7 @@ public class Book : MonoBehaviour
         timer4 += Time.deltaTime * timerSpeed;
         if (timer4 >= TimeToLocatePlayer)
         {
-            lastPlayerPos = GameObject.FindGameObjectWithTag("Character").transform.position;
+            lastPlayerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
             timer4 = 0.0f;
             closetoPlayer = new Vector3(lastPlayerPos.x + Random.Range(-10.0f, 10.0f), yPos, lastPlayerPos.z + Random.Range(-10.0f, 10.0f));
         }
@@ -73,7 +73,7 @@ public class Book : MonoBehaviour
         //book will follow player until it hit the player
         if (timer3 >= TimeToAttack)
         {
-            playerPos = GameObject.FindGameObjectWithTag("Character").transform.position;
+            playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
             transform.position = Vector3.Lerp(transform.position, playerPos, Time.deltaTime * speed);
             if (Vector3.Distance(transform.position, playerPos) <= 0.1f)
             {
@@ -171,10 +171,11 @@ public class Book : MonoBehaviour
     {
         Debug.Log(other.name);
 
-        if (other.CompareTag("Character"))
+        if (other.CompareTag("Player"))
         {
-            Debug.LogWarning("Book hit Player:O");
-            //Destroy(this.gameObject); // maybe implement this later when we actually spawn more of them...
+            //Debug.LogWarning("Book hit Player:O");
+            Destroy(this.gameObject); // maybe implement this later when we actually spawn more of them...
+            
             //reduce the points or something of player
             AudioSource.PlayClipAtPoint(failure, transform.position);
 
