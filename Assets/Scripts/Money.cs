@@ -11,7 +11,7 @@ public class Money : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     { 
-        moneyPos = new Vector3(Random.Range(-50f, 50f), 0.3f, Random.Range(-50f, 50f));
+        moneyPos = new Vector3(Random.Range(-50f, 50f), 1.4f, Random.Range(-50f, 50f));
         transform.position = moneyPos;
     }
 

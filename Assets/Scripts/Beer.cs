@@ -9,6 +9,7 @@ public class Beer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     { 
+ 		transform.position = new Vector3(Random.Range(-50f, 50f), 0.88f, Random.Range(-50f, 50f));
     }
 
     // Update is called once per frame
