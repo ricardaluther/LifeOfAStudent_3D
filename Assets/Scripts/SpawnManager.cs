@@ -13,6 +13,9 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private List<GameObject> _enemiesPrefabs;
 
+    [SerializeField] 
+    private List<GameObject> _powerUpPrefabs;
+
 
    //Spawn delay
    [SerializeField] 
@@ -41,7 +44,7 @@ public class SpawnManager : MonoBehaviour
         //Spawn prefab in an area:
         while(_spawnStuff)
         {
-            Instantiate(_enemiesPrefabs[UnityEngine.Random.Range(0, 5)], new Vector3(
+            Instantiate(_enemiesPrefabs[UnityEngine.Random.Range(0, 6)], new Vector3(
                     UnityEngine.Random.Range(-10f, 10f),
                     UnityEngine.Random.Range(0f, 2f),
                     UnityEngine.Random.Range(-10f, 10f)), Quaternion.identity);

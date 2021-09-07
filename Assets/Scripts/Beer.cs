@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Beer : MonoBehaviour
 {
+	public AudioClip DrinkBeer;
     private float _beerSpeed = 4f;
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class Beer : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             other.GetComponent<Player>().GetDrunk();
+			AudioSource.PlayClipAtPoint(DrinkBeer, transform.position);
             Destroy(this.gameObject);
             // some other form of punishment? withdraw points?
         }

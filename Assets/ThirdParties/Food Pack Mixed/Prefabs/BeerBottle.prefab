@@ -66,6 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 751d302e814d3a04d8fb5d0d6707af4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DrinkBeer: {fileID: 8300000, guid: ef81c92467806d54696a8da430c037b4, type: 3}
 --- !u!136 &149771021143684630
 CapsuleCollider:
   m_ObjectHideFlags: 0

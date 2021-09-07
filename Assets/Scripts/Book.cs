@@ -138,12 +138,12 @@ public class Book : MonoBehaviour
         desiredPos = new Vector3(xPos, yPos, zPos);
     }
 
-    private void SeekPlayer()
+  /*  private void SeekPlayer()
     {
         timer2 += Time.deltaTime * timerSpeed;
         if (timer2 >= TimeToSeek)
         {
-            transform.position = Vector3.Lerp(transform.position, GameObject.FindGameObjectWithTag("Character").transform.position /* + range */, Time.deltaTime * speed);
+            transform.position = Vector3.Lerp(transform.position, GameObject.FindGameObjectWithTag("Character").transform.position /* + range , Time.deltaTime * speed);
             if (Vector3.Distance(transform.position, desiredPos) <= 0.01f)
             {
                 rewriteDesPos();
@@ -165,19 +165,21 @@ public class Book : MonoBehaviour
             }
         }
     }
+*/
 
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
+        //Debug.Log(other.name);
 
         if (other.CompareTag("Player"))
         {
+			//reduce the points or something of player
+            AudioSource.PlayClipAtPoint(failure, transform.position);
             //Debug.LogWarning("Book hit Player:O");
             Destroy(this.gameObject); // maybe implement this later when we actually spawn more of them...
             
-            //reduce the points or something of player
-            AudioSource.PlayClipAtPoint(failure, transform.position);
+            
 
 
         }
