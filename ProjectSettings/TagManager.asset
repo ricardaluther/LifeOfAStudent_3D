@@ -1,3 +1,52 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:b96db437aadc5c059ab780ec62c382368c766920b712bfe91accff892c41841b
-size 486
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - ActivePoint
+  - Character
+  - Barrier
+  - Book
+  - Beer
+  - Money
+  - Projectile
+  - Coffee
+  - Phone
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - permeable objects
+  - Water
+  - UI
+  - 
+  - 
+  - Character
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
