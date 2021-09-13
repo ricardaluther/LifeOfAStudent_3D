@@ -179,9 +179,10 @@ public class Book : MonoBehaviour
             //Debug.LogWarning("Book hit Player:O");
             Destroy(this.gameObject); // maybe implement this later when we actually spawn more of them...
             
-            
-
-
+        }
+        else if (other.CompareTag("Projectile"))
+        {
+            Destroy((this.gameObject));
         }
     }
 }

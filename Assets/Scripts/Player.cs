@@ -13,6 +13,9 @@ public class Player : MonoBehaviour
     public bool _drunk = false;
     private float _soberingTime = 10f;
 
+    public bool _distracted = false;
+    private float _phoneTime = 4f;
+
     [SerializeField] private float _speed = 7f;
     [SerializeField] private float _jumpSpeed = 4f;
     [SerializeField] private float _gravity = 9.81f;
@@ -27,8 +30,9 @@ public class Player : MonoBehaviour
     void Start()
     {
         _drunk = false;
+        _distracted = false;
         _controller = GetComponent<CharacterController>();
-        transform.position = new Vector3(0f, 0f, 0f);
+        transform.position = new Vector3(0f, 2.15f, -1.02f);
         anim = gameObject.GetComponent<Animation>();
     }
 
@@ -72,7 +76,7 @@ public class Player : MonoBehaviour
         // apply gravity to the y-direction, pass the y-direction to the playertranslate and pass the playertranslate to the controller
         _directionY -= _gravity * Time.deltaTime;
         playerTranslate.y = _directionY;
-        if (!_drunk)
+        if (!_drunk && !_distracted)
         {
             _controller.Move(playerTranslate * _speed * Time.deltaTime);
         }
@@ -99,6 +103,18 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(_soberingTime);
         _drunk = false;
+    }
+    
+    public void GetDistracted()
+    {
+        _distracted = true;
+        StartCoroutine(BackToFocus());
+    }
+
+    IEnumerator BackToFocus()
+    {
+        yield return new WaitForSeconds(_phoneTime);
+        _distracted = false;
     }
     //getter for the lives variable
     public int GetLives()

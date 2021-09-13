@@ -29,7 +29,7 @@ public class Beer : MonoBehaviour
             // some other form of punishment? withdraw points?
         }
         // if we collide with a weapon, the wine bottle gets destroyed since it is fairly small, your score gets +2
-        else if (other.CompareTag("Weapon"))
+        else if (other.CompareTag("Projectile"))
         {
             Destroy(this.gameObject);
             // give points to player
