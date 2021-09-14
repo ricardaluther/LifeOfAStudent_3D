@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DrinkBeer: {fileID: 8300000, guid: ef81c92467806d54696a8da430c037b4, type: 3}
+  glassShatter: {fileID: 8300000, guid: d5e6eb45d3d25d14e8e652a70f5ba449, type: 3}
 --- !u!136 &149771021143684630
 CapsuleCollider:
   m_ObjectHideFlags: 0

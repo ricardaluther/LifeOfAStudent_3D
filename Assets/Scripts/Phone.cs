@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Phone : MonoBehaviour
 {
+	public AudioClip phoneShatter;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,7 @@ public class Phone : MonoBehaviour
         }
         else if (other.CompareTag("Projectile"))
         {
+			AudioSource.PlayClipAtPoint(phoneShatter, transform.position);
             Destroy((this.gameObject));
         }
     }

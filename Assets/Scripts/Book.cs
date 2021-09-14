@@ -9,6 +9,9 @@ public class Book : MonoBehaviour
     private Vector3 playerPos;
     
     public AudioClip failure;
+	public AudioClip good;
+	public AudioClip blätter;
+	public AudioClip danger;
 
     [Header("Timers")]
     [SerializeField] public float timer1 = 0.0f; //this timer decides the time of the general random movement
@@ -36,7 +39,7 @@ public class Book : MonoBehaviour
     [SerializeField] private Vector3 lastPlayerPos;
     [SerializeField] private Vector3 closetoPlayer;
     
-// TODO: spawn more books, destroy book if it hits player + sound if gets hit or hits player 
+
 
     void Start()
     {
@@ -74,6 +77,7 @@ public class Book : MonoBehaviour
         if (timer3 >= TimeToAttack)
         {
             playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
+			AudioSource.PlayClipAtPoint(danger, desiredPos);
             transform.position = Vector3.Lerp(transform.position, playerPos, Time.deltaTime * speed);
             if (Vector3.Distance(transform.position, playerPos) <= 0.1f)
             {
@@ -182,6 +186,8 @@ public class Book : MonoBehaviour
         }
         else if (other.CompareTag("Projectile"))
         {
+			AudioSource.PlayClipAtPoint(good, transform.position);
+ 			AudioSource.PlayClipAtPoint(blätter, transform.position);
             Destroy((this.gameObject));
         }
     }

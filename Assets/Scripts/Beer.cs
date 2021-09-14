@@ -5,6 +5,7 @@ using UnityEngine;
 public class Beer : MonoBehaviour
 {
 	public AudioClip DrinkBeer;
+	public AudioClip glassShatter;
     private float _beerSpeed = 4f;
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,7 @@ public class Beer : MonoBehaviour
         // if we collide with a weapon, the wine bottle gets destroyed since it is fairly small, your score gets +2
         else if (other.CompareTag("Projectile"))
         {
+			AudioSource.PlayClipAtPoint(glassShatter, transform.position);
             Destroy(this.gameObject);
             // give points to player
         }

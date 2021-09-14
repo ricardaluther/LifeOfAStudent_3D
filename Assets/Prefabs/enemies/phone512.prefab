@@ -109,3 +109,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1643a22d1fa49fc4486649f660a6a02f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  phoneShatter: {fileID: 8300000, guid: 5b7cd7bc3cb32b840bb16f5c55ae8463, type: 3}

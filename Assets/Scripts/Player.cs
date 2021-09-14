@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     private Animation anim;
     private BoxCollider col;
 
+	 public AudioClip nyanCat;
+
 
 
     void Start()
@@ -108,6 +110,7 @@ public class Player : MonoBehaviour
     public void GetDistracted()
     {
         _distracted = true;
+		AudioSource.PlayClipAtPoint(nyanCat, transform.position);
         StartCoroutine(BackToFocus());
     }
 

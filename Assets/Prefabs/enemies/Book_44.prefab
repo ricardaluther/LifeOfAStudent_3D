@@ -110,6 +110,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   desiredPos: {x: 0, y: 0, z: 0}
   failure: {fileID: 8300000, guid: cd45e07afe09624449b788c244e21ce6, type: 3}
+  good: {fileID: 8300000, guid: 7dcf10b5afca2ce4891005f654fee643, type: 3}
+  "bl\xE4tter": {fileID: 8300000, guid: 9a67038e6507e66408aaaeff336ac303, type: 3}
+  danger: {fileID: 8300000, guid: ace020deda4e1814da85d0396a433cdf, type: 3}
   timer1: 0
   timer2: 0
   timer3: 0
