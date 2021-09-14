@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
         _drunk = false;
         _distracted = false;
         _controller = GetComponent<CharacterController>();
-        transform.position = new Vector3(0f, 2.15f, -1.02f);
+        transform.position = new Vector3(0f, 1f, 0f);
         anim = gameObject.GetComponent<Animation>();
     }
 
