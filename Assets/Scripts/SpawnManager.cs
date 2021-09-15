@@ -42,16 +42,21 @@ public class SpawnManager : MonoBehaviour
     {
         
     }
-    
+
+    public Vector3 spawnLocation()
+    {
+        return new Vector3(
+            UnityEngine.Random.Range(-35f, 8f),
+            UnityEngine.Random.Range(1f, 2f),
+            UnityEngine.Random.Range(-9f, 24f));
+        
+    }
     IEnumerator SpawnSystem()
     {
         //Spawn prefab in an area:
         while(_spawnStuff)
         {
-            Instantiate(_enemiesPrefabs[UnityEngine.Random.Range(0, 6)], new Vector3(
-                    UnityEngine.Random.Range(-10f, 10f),
-                    UnityEngine.Random.Range(0f, 2f),
-                    UnityEngine.Random.Range(-10f, 10f)), Quaternion.identity);
+            Instantiate(_enemiesPrefabs[UnityEngine.Random.Range(0, 6)], spawnLocation(), Quaternion.identity);
             yield return new WaitForSeconds(_delay);
         }
         Destroy(this.gameObject);
@@ -62,7 +67,7 @@ public class SpawnManager : MonoBehaviour
         //Spawn prefab in an area:
         while(_spawnStuff)
         {
-            Instantiate(_powerUpPrefabs[UnityEngine.Random.Range(0, 6)]);
+            Instantiate(_powerUpPrefabs[UnityEngine.Random.Range(0, 6)], spawnLocation(),Quaternion.identity);
             yield return new WaitForSeconds(_delayPowUp);
         }
         Destroy(this.gameObject);

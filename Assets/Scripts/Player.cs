@@ -16,6 +16,9 @@ public class Player : MonoBehaviour
     public bool _distracted = false;
     private float _phoneTime = 4f;
 
+    public bool _caffeinated;
+    private float _coffeeTime = 8f;
+
     [SerializeField] private float _speed = 7f;
     [SerializeField] private float _jumpSpeed = 4f;
     [SerializeField] private float _gravity = 9.81f;
@@ -78,13 +81,22 @@ public class Player : MonoBehaviour
         // apply gravity to the y-direction, pass the y-direction to the playertranslate and pass the playertranslate to the controller
         _directionY -= _gravity * Time.deltaTime;
         playerTranslate.y = _directionY;
-        if (!_drunk && !_distracted)
+        if (!_drunk && !_distracted && !_caffeinated)
         {
             _controller.Move(playerTranslate * _speed * Time.deltaTime);
         }
-        else if (_drunk)
+        else if (_drunk && !_caffeinated)
         {
             _controller.Move(new Vector3(-playerTranslate.x, playerTranslate.y, -playerTranslate.z) * _speed * Time.deltaTime);
+        }
+        else if (!_drunk && _caffeinated)
+        {
+            _controller.Move(playerTranslate * _speed * 3 * Time.deltaTime);
+        }
+        else if (_drunk && _caffeinated)
+        {
+            _controller.Move(new Vector3(-playerTranslate.x, playerTranslate.y, -playerTranslate.z) * _speed * 3 *
+                             Time.deltaTime);
         }
     }
 
@@ -118,6 +130,17 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(_phoneTime);
         _distracted = false;
+    }
+    public void GetCaffeinated()
+    {
+        _caffeinated = true;
+        StartCoroutine(DecreasedCoffeine());
+    }
+
+    IEnumerator DecreasedCoffeine()
+    {
+        yield return new WaitForSeconds(_coffeeTime);
+        _caffeinated = false;
     }
     //getter for the lives variable
     public int GetLives()

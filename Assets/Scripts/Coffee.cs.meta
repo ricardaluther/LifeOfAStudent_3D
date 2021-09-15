@@ -3,7 +3,8 @@ guid: 889eedbd142378745b945c6a7dfb59ed
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - DrinkCoffee: {fileID: 8300000, guid: 4b619537561ecb940a19205e1ee2819d, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

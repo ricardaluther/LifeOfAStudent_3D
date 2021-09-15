@@ -128,8 +128,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.3, z: 0.1}
-  m_Center: {x: 0, y: 0.2, z: 0}
+  m_Size: {x: 0.18644404, y: 0.3902764, z: 0.1}
+  m_Center: {x: -0.0061389804, y: 0.15486182, z: 0}
 --- !u!114 &5648298066296085875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +143,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DrinkCoffee: {fileID: 8300000, guid: 4b619537561ecb940a19205e1ee2819d, type: 3}
+  _caffeinated: 0
+  _coffeetime: 4
 --- !u!1 &2440216529127931161
 GameObject:
   m_ObjectHideFlags: 0
