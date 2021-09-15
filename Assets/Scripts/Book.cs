@@ -73,7 +73,7 @@ public class Book : MonoBehaviour
         timer2 += Time.deltaTime * timerSpeed;
         timer3 += Time.deltaTime * timerSpeed;
         
-        //book will follow player until it hit the player
+        //book will follow player until it hits the player
         if (timer3 >= TimeToAttack)
         {
             playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
