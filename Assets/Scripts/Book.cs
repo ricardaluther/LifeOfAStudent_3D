@@ -181,14 +181,14 @@ public class Book : MonoBehaviour
 			//reduce the points or something of player
             AudioSource.PlayClipAtPoint(failure, transform.position);
             //Debug.LogWarning("Book hit Player:O");
-            Destroy(this.gameObject); // maybe implement this later when we actually spawn more of them...
+            this.gameObject.SetActive(false); // maybe implement this later when we actually spawn more of them...
             
         }
         else if (other.CompareTag("Projectile"))
         {
 			AudioSource.PlayClipAtPoint(good, transform.position);
  			AudioSource.PlayClipAtPoint(blätter, transform.position);
-            Destroy((this.gameObject));
+            this.gameObject.SetActive(false);
         }
     }
 }

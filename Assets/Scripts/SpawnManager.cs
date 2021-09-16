@@ -10,9 +10,7 @@ using Random = System.Random;
 //spawn manager blueprint:
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField]
-    private List<GameObject> _enemiesPrefabs;
-
+    
     [SerializeField] 
     private List<GameObject> _powerUpPrefabs;
 
@@ -23,6 +21,8 @@ public class SpawnManager : MonoBehaviour
 
    [SerializeField] 
    private float _delayPowUp = 3f;
+
+   
     
    //Controls whether prefab instances are spawned
    //Question: what controls this? Player class? some central control class?
@@ -32,7 +32,7 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         //to be replaced later...
-        //_spawnStuff = false;
+        _spawnStuff = true;
         StartCoroutine(SpawnSystem());
         StartCoroutine(SpawnPowUpSystem());
     }
@@ -40,28 +40,38 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+   
     }
 
     public Vector3 spawnLocation()
     {
         return new Vector3(
-            UnityEngine.Random.Range(-35f, 8f),
+            UnityEngine.Random.Range(-10f, 8f),
             UnityEngine.Random.Range(1f, 2f),
             UnityEngine.Random.Range(-9f, 24f));
         
     }
+
     IEnumerator SpawnSystem()
     {
-        //Spawn prefab in an area:
-        while(_spawnStuff)
+
+        while (_spawnStuff)
         {
-            Instantiate(_enemiesPrefabs[UnityEngine.Random.Range(0, 6)], spawnLocation(), Quaternion.identity);
-            yield return new WaitForSeconds(_delay);
+            GameObject _enemies = Pooling.SharedInstance.GetPooledObject();
+            if (_enemies != null)
+            {
+                _enemies.transform.position = spawnLocation();
+                _enemies.transform.rotation = Quaternion.identity;
+                _enemies.SetActive(true);
+            }
+
+            yield return new WaitForSeconds(_delayPowUp);
         }
-        Destroy(this.gameObject);
+
+        gameObject.SetActive(false);
+
     }
-    
+
     IEnumerator SpawnPowUpSystem()
     {
         //Spawn prefab in an area:

@@ -38341,6 +38341,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1224233400}
   - component: {fileID: 1224233399}
+  - component: {fileID: 1224233401}
   m_Layer: 0
   m_Name: SpawnManager
   m_TagString: Untagged
@@ -38360,13 +38361,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b709458d6c1c0d347829745071e37cd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemiesPrefabs:
-  - {fileID: 1173945769684884, guid: 8eabee3a247b5fe41bfdcf4b301c41a6, type: 3}
-  - {fileID: 1180002230424376, guid: 31a995afe3fc9f54ca95ab3cc78b6800, type: 3}
-  - {fileID: 1605148390852154, guid: 8c327ec2627a0df46a0e82d80aaaef96, type: 3}
-  - {fileID: 1847399388852780, guid: 6bdd18994543e264491fb71fed626cae, type: 3}
-  - {fileID: 1352519850152638, guid: 293ec170ec9912240b5765c4cf87f845, type: 3}
-  - {fileID: 1097831856457328940, guid: ec4332dc33d68604f91852858e3e9734, type: 3}
   _powerUpPrefabs:
   - {fileID: 5153829106465458685, guid: 4c92cc0acea003e4f8a3b548644fe522, type: 3}
   - {fileID: 3446244152287254372, guid: 7681ec1606024df4ab08fd8dd18f99a1, type: 3}
@@ -38391,6 +38385,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1224233401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224233398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f54021d482cc60e4f81af97d5e755435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObjects: []
+  objectToPool: {fileID: 1352519850152638, guid: 293ec170ec9912240b5765c4cf87f845,
+    type: 3}
+  amountToPool: 100
 --- !u!4 &1225355509 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4516215191552552, guid: d70a27546822c004b81f0b6ce1dda5aa,
