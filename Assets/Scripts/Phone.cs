@@ -24,13 +24,13 @@ public class Phone : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             other.GetComponent<Player>().GetDistracted();
-            Destroy(this.gameObject); 
+            this.gameObject.SetActive(false); 
             
         }
         else if (other.CompareTag("Projectile"))
         {
 			AudioSource.PlayClipAtPoint(phoneShatter, transform.position);
-            Destroy((this.gameObject));
+            this.gameObject.SetActive(false);
         }
     }
 }
