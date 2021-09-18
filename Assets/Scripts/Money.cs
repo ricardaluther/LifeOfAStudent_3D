@@ -62,7 +62,11 @@ public class Money : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             AudioSource.PlayClipAtPoint(MoneyABBA, transform.position);
-            Destroy(this.gameObject);
+			//before object pooling
+            //Destroy(this.gameObject);
+
+			//after object pooling
+			gameObject.SetActive(false);
             // TODO add points to money bar
             
             

@@ -26,7 +26,11 @@ public class Pizza : MonoBehaviour
             //TODO get food points
             
             AudioSource.PlayClipAtPoint(Eat, transform.position);
-            Destroy(this.gameObject);
+			//before op
+            //Destroy(this.gameObject);
+
+			//after op
+			gameObject.SetActive(false);
         }
         // if we collide with a weapon, the wine bottle gets destroyed since it is fairly small, your score gets +2
         
