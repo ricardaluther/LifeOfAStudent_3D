@@ -14,6 +14,8 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] 
     private List<GameObject> _powerUpPrefabs;
 
+    [SerializeField]
+    private List<GameObject> _enemiesPrefabs;
 
    //Spawn delay
    [SerializeField] 
@@ -54,10 +56,11 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnSystem()
     {
-
-        while (_spawnStuff)
+        //Spawn prefab in an area:
+        while(_spawnStuff)
         {
-            GameObject _enemies = Pooling.SharedInstance.GetPooledObject();
+            //Instantiate(_enemiesPrefabs[UnityEngine.Random.Range(0, 6)], spawnLocation(),Quaternion.identity);
+            GameObject _enemies = ObjectPool.SharedInstance.GetPooledObject();
             if (_enemies != null)
             {
                 _enemies.transform.position = spawnLocation();
@@ -65,7 +68,7 @@ public class SpawnManager : MonoBehaviour
                 _enemies.SetActive(true);
             }
 
-            yield return new WaitForSeconds(_delayPowUp);
+            yield return new WaitForSeconds(_delay);
         }
 
         gameObject.SetActive(false);
@@ -77,19 +80,20 @@ public class SpawnManager : MonoBehaviour
         //Spawn prefab in an area:
         while(_spawnStuff)
         {
-			//Old pre-object-pooling instantiation of PowUps
-           // Instantiate(_powerUpPrefabs[UnityEngine.Random.Range(0, 6)], spawnLocation(),Quaternion.identity);
-			// Instantiation with Object Pooling
-			GameObject powUp = ObjectPoolPowUp.SharedInstance.GetPooledObject(); 
-              if (powUp != null) {
-                powUp.transform.position = spawnLocation();
-                powUp.transform.rotation = Quaternion.identity;
-                powUp.SetActive(true);
-              }
-		
+            //Instantiate(_powerUpPrefabs[UnityEngine.Random.Range(0, 6)], spawnLocation(),Quaternion.identity);
+            GameObject _powerUps = ObjectPoolPowerUp.SharedInstance.GetPooledObject();
+            if (_powerUps != null)
+            {
+                _powerUps.transform.position = spawnLocation();
+                _powerUps.transform.rotation = Quaternion.identity;
+                _powerUps.SetActive(true);
+            }
 
             yield return new WaitForSeconds(_delayPowUp);
         }
-        gameObject.SetActive(false); 
+
+        gameObject.SetActive(false);
+        //Spawn prefab in an area:
+       
     }
 }
