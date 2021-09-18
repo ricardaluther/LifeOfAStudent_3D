@@ -13,6 +13,9 @@ public class Book : MonoBehaviour
 	public AudioClip blätter;
 	public AudioClip danger;
 
+    [SerializeField] 
+    private Player _player;
+
     [Header("Timers")]
     [SerializeField] public float timer1 = 0.0f; //this timer decides the time of the general random movement
 
@@ -179,6 +182,7 @@ public class Book : MonoBehaviour
         if (other.CompareTag("Player"))
         {
 			//reduce the points or something of player
+            Player.addStress(1);
             AudioSource.PlayClipAtPoint(failure, transform.position);
             //Debug.LogWarning("Book hit Player:O");
             this.gameObject.SetActive(false); // maybe implement this later when we actually spawn more of them...
@@ -186,6 +190,8 @@ public class Book : MonoBehaviour
         }
         else if (other.CompareTag("Projectile"))
         {
+            Player.addStress(-1);
+            Player.addEcts(1);
 			AudioSource.PlayClipAtPoint(good, transform.position);
  			AudioSource.PlayClipAtPoint(blätter, transform.position);
             this.gameObject.SetActive(false);

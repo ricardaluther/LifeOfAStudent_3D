@@ -7,8 +7,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-    [Header("Player Settings")] [SerializeField]
-    private int _lives = 3;
+    [Header("Player Settings")] 
+    [SerializeField]
+    private static int _ects;
 
     public bool _drunk = false;
     private float _soberingTime = 10f;
@@ -18,6 +19,10 @@ public class Player : MonoBehaviour
 
     public bool _caffeinated;
     private float _coffeeTime = 8f;
+
+    private int _money = 5000;
+
+    private static int _stress;
 
     [SerializeField] private float _speed = 7f;
     [SerializeField] private float _jumpSpeed = 4f;
@@ -39,11 +44,15 @@ public class Player : MonoBehaviour
         _controller = GetComponent<CharacterController>();
         transform.position = new Vector3(0f, 1f, 0f);
         anim = gameObject.GetComponent<Animation>();
+        _stress = 0;
+        _ects = 0;
     }
 
     void Update()
     {
         PlayerMovement();
+
+        setMoney(-1);
     }
 
     void PlayerMovement()
@@ -142,10 +151,50 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(_coffeeTime);
         _caffeinated = false;
     }
-    //getter for the lives variable
-    public int GetLives()
+    //getter for the ects variable
+    public static int getEcts()
     {
-        return _lives;
+        return _ects;
+    }
+
+    public static void addEcts(int amount)
+    {
+        _ects += amount;
+    }
+
+    public int getMoney()
+    {
+        return _money;
+    }
+
+    public void setMoney(int amount)
+    {
+        if (_money + amount > 0)
+        {
+            _money += amount;
+        }
+        else
+        {
+            _money = 0;
+        }
+        
+    }
+
+    public static int getStress()
+    {
+        return _stress;
+    }
+
+    public static void addStress(int amount)
+    {
+        if (_stress + amount > 0)
+        {
+            _stress += amount;
+        }
+        else
+        {
+            _stress = 0;
+        }
     }
 }
 

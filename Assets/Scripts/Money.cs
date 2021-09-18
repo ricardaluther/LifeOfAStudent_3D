@@ -8,6 +8,11 @@ public class Money : MonoBehaviour
 
     private Vector3 moneyPos;
     private float _moneySpeed = 4f;
+
+    [SerializeField] 
+    public Player _player;
+    
+    
     // Start is called before the first frame update
     void Start()
     { 
@@ -61,6 +66,7 @@ public class Money : MonoBehaviour
         // if the object we collide with is the student he gets the money
         if(other.CompareTag("Player"))
         {
+            _player.setMoney(5000);
             AudioSource.PlayClipAtPoint(MoneyABBA, transform.position);
 			//before object pooling
             //Destroy(this.gameObject);

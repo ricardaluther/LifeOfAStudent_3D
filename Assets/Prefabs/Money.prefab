@@ -224,6 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoneyABBA: {fileID: 8300000, guid: f8bc8c1646fdeec47bec27b895b18821, type: 3}
+  _player: {fileID: 0}
 --- !u!1 &5153829106591030767
 GameObject:
   m_ObjectHideFlags: 0

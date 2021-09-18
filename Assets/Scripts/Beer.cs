@@ -28,6 +28,7 @@ public class Beer : MonoBehaviour
 			AudioSource.PlayClipAtPoint(DrinkBeer, transform.position);
             this.gameObject.SetActive(false);
             // some other form of punishment? withdraw points?
+            Player.addStress(-5);
         }
         // if we collide with a weapon, the wine bottle gets destroyed since it is fairly small, your score gets +2
         else if (other.CompareTag("Projectile"))

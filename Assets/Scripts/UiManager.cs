@@ -11,17 +11,27 @@ public class UiManager : MonoBehaviour
     private Player _player;
     
     [SerializeField]
-    private Text _livesText;
+    private Text _ectsText;
+
+    [SerializeField] 
+    private Text _moneyText;
+
+    [SerializeField] 
+    private Text _stressText;
 
     // Start is called before the first frame update
     void Start()
     {
-        _livesText.text = "Lives " + _player.GetLives();
+        _ectsText.text = "ECTS: " + Player.getEcts();
+        _moneyText.text = "Money: " + _player.getMoney();
+        _stressText.text = "Stress: " + Player.getStress();
     }
 
     // Update is called once per frame
     void Update()
     {
-        _livesText.text = "Lives: " + _player.GetLives();
+        _ectsText.text = "ECTS: " + Player.getEcts();
+        _moneyText.text = "Money: " + _player.getMoney();
+        _stressText.text = "Stress: " + Player.getStress();
     }
 }
