@@ -77,9 +77,19 @@ public class SpawnManager : MonoBehaviour
         //Spawn prefab in an area:
         while(_spawnStuff)
         {
-            Instantiate(_powerUpPrefabs[UnityEngine.Random.Range(0, 6)], spawnLocation(),Quaternion.identity);
+			//Old pre-object-pooling instantiation of PowUps
+           // Instantiate(_powerUpPrefabs[UnityEngine.Random.Range(0, 6)], spawnLocation(),Quaternion.identity);
+			// Instantiation with Object Pooling
+			GameObject powUp = ObjectPoolPowUp.SharedInstance.GetPooledObject(); 
+              if (powUp != null) {
+                powUp.transform.position = spawnLocation();
+                powUp.transform.rotation = Quaternion.identity;
+                powUp.SetActive(true);
+              }
+		
+
             yield return new WaitForSeconds(_delayPowUp);
         }
-        Destroy(this.gameObject);
+        gameObject.SetActive(false); 
     }
 }

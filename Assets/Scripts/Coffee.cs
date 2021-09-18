@@ -33,7 +33,11 @@ public class Coffee : MonoBehaviour
 
             other.GetComponent<Player>().GetCaffeinated();
             AudioSource.PlayClipAtPoint(DrinkCoffee, transform.position);
-            Destroy(this.gameObject);
+			//before object pooling:
+            //Destroy(this.gameObject);
+
+			//after object pooling
+			gameObject.SetActive(false);
         }
        
         
