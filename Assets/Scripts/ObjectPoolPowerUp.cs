@@ -33,13 +33,17 @@ public class ObjectPoolPowerUp : MonoBehaviour
 
     public GameObject GetPooledObject()
     {
-        for(int i = 0; i < amountPUToPool; i++)
+        if (pooledObjectsPU.Count > 0)
         {
-            if (!pooledObjectsPU[i].activeInHierarchy)
+            for(int i = 0; i < amountPUToPool; i++)
             {
-                return pooledObjectsPU[i];
+                if (!pooledObjectsPU[i].activeInHierarchy)
+                {
+                    return pooledObjectsPU[i];
+                }
             }
         }
+
 
         return null;
     }

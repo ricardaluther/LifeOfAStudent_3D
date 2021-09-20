@@ -8,7 +8,11 @@ public class Player : MonoBehaviour
 {
 
     [Header("Player Settings")] [SerializeField]
-    private int _lives = 3;
+    private static int ects;
+
+    private static int stress;
+
+    private static int money;
 
     public bool _drunk = false;
     private float _soberingTime = 10f;
@@ -39,11 +43,15 @@ public class Player : MonoBehaviour
         _controller = GetComponent<CharacterController>();
         transform.position = new Vector3(0f, 1f, 0f);
         anim = gameObject.GetComponent<Animation>();
+        ects = 0;
+        stress = 0;
+        money = 10000;
     }
 
     void Update()
     {
         PlayerMovement();
+        Player.AddMoney(-1);
     }
 
     void PlayerMovement()
@@ -142,10 +150,51 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(_coffeeTime);
         _caffeinated = false;
     }
-    //getter for the lives variable
-    public int GetLives()
+    
+    public static int GetEcts()
     {
-        return _lives;
+        return ects;
     }
+
+    public static void AddEcts(int amount)
+    {
+        ects += amount;
+    }
+
+    public static int GetMoney()
+    {
+        return money;
+    }
+
+    public static void AddMoney(int amount)
+    {
+        if (money + amount > 0)
+        {
+            money += amount;
+        }
+        else
+        {
+            money = 0;
+        }
+    }
+
+    public static int GetStress()
+    {
+        return stress;
+    }
+
+    public static void AddStress(int amount)
+    {
+        if (stress + amount > 0)
+        {
+            stress += amount;
+        }
+        else
+        {
+            stress = 0;
+        }
+    }
+    
+    
 }
 
