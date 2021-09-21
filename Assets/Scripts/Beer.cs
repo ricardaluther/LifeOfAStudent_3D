@@ -24,6 +24,7 @@ public class Beer : MonoBehaviour
         // if the object we collide with is the student, start drinking the wine bottle
         if(other.CompareTag("Player"))
         {
+            Player.AddStress(-5);
             other.GetComponent<Player>().GetDrunk();
 			AudioSource.PlayClipAtPoint(DrinkBeer, transform.position);
             this.gameObject.SetActive(false);

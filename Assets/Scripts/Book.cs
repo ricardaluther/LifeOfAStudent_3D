@@ -179,6 +179,8 @@ public class Book : MonoBehaviour
         if (other.CompareTag("Player"))
         {
 			//reduce the points or something of player
+            Player.AddStress(1);
+            
             AudioSource.PlayClipAtPoint(failure, transform.position);
             //Debug.LogWarning("Book hit Player:O");
             this.gameObject.SetActive(false); // maybe implement this later when we actually spawn more of them...
@@ -186,6 +188,8 @@ public class Book : MonoBehaviour
         }
         else if (other.CompareTag("Projectile"))
         {
+            Player.AddStress(-1);
+            Player.AddEcts(1);
 			AudioSource.PlayClipAtPoint(good, transform.position);
  			AudioSource.PlayClipAtPoint(blätter, transform.position);
             this.gameObject.SetActive(false);
