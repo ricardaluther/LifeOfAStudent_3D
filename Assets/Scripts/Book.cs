@@ -77,19 +77,14 @@ public class Book : MonoBehaviour
         if (timer3 >= TimeToAttack)
         {
             playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
-			
+			AudioSource.PlayClipAtPoint(danger, desiredPos);
             transform.position = Vector3.Lerp(transform.position, playerPos, Time.deltaTime * speed);
-			if (Vector3.Distance(transform.position, playerPos) > 4.0f && Vector3.Distance(transform.position, playerPos) < 4.4f)
-			{
-				AudioSource.PlayClipAtPoint(danger, transform.position);
-			}
             if (Vector3.Distance(transform.position, playerPos) <= 0.1f)
             {
                 rewriteDesPos();
                 timer3 = 0.0f;
                 timer2 = 0.0f; //if it attacked the player it doesn't need to seek right away after.... 
                 timer1 = 0.0f;
-				 this.gameObject.SetActive(false); // don't keep the book in the game, since there are too man books already
             }
         }
         //book will go close to the player
