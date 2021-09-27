@@ -12,12 +12,27 @@ public class ThrowingStuff : MonoBehaviour
     //increase the amount variable by one and add the prefab variable
     //to the officeSupplies Array in the start function.
     //Then assign a prefab to the prefab variable using the unity editor.
+    //Note: The amount of prefabs in the three tiers has to be kept the same.
+    //Amount variable specifies the amount of prefabs in each of the three tiers.
     
-    //different office supply prefabs:
-    public GameObject officeSupply1;
-    public GameObject officeSupply2;
-    public GameObject officeSupply3;
-    public GameObject officeSupply4;
+    //different office supply prefabs in tier one:
+    public GameObject t1officeSupply1;
+    public GameObject t1officeSupply2;
+    public GameObject t1officeSupply3;
+    public GameObject t1officeSupply4;
+    
+    //different office supply prefabs in tier two:
+    public GameObject t2officeSupply1;
+    public GameObject t2officeSupply2;
+    public GameObject t2officeSupply3;
+    public GameObject t2officeSupply4;
+
+    //different office supply prefabs in tier three:
+    public GameObject t3officeSupply1;
+    public GameObject t3officeSupply2;
+    public GameObject t3officeSupply3;
+    public GameObject t3officeSupply4;
+
     //amount of prefabs used for easy modification:
     private int amount = 4;
     
@@ -30,8 +45,10 @@ public class ThrowingStuff : MonoBehaviour
     //Max amount of throwables instantiated:
     public int limit;
     
-    //Queue for storing them:
-    private Queue<GameObject> _throwables = new Queue<GameObject>();
+    //Queues for storing them:
+    private Queue<GameObject> _throwablesTierOne = new Queue<GameObject>();
+    private Queue<GameObject> _throwablesTierTwo = new Queue<GameObject>();
+    private Queue<GameObject> _throwablesTierThree = new Queue<GameObject>();
     
     private bool _launched;
     
@@ -39,14 +56,22 @@ public class ThrowingStuff : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject[] officeSupplies = {officeSupply1, officeSupply2, officeSupply3, officeSupply4};
+        GameObject[] officeSuppliesTierOne = {t1officeSupply1, t1officeSupply2, t1officeSupply3, t1officeSupply4};
+        GameObject[] officeSuppliesTierTwo = {t2officeSupply1, t2officeSupply2, t2officeSupply3, t2officeSupply4};
+        GameObject[] officeSuppliesTierThree = {t3officeSupply1, t3officeSupply2, t3officeSupply3, t3officeSupply4};
         
         for (int i = 0; i < limit; i++)
         {
             int f = UnityEngine.Random.Range(0, amount - 1);
-            GameObject anInstance = Instantiate(officeSupplies[f], spawnPoint.position, officeSupplies[f].transform.rotation);
-            _throwables.Enqueue(anInstance);
-            anInstance.SetActive(false);
+            GameObject anInstanceTone = Instantiate(officeSuppliesTierOne[f], spawnPoint.position, officeSuppliesTierOne[f].transform.rotation);
+            GameObject anInstanceTtwo = Instantiate(officeSuppliesTierTwo[f], spawnPoint.position, officeSuppliesTierTwo[f].transform.rotation);
+            GameObject anInstanceTthree = Instantiate(officeSuppliesTierThree[f], spawnPoint.position, officeSuppliesTierThree[f].transform.rotation);
+            _throwablesTierOne.Enqueue(anInstanceTone);
+            _throwablesTierTwo.Enqueue(anInstanceTtwo);
+            _throwablesTierThree.Enqueue(anInstanceTthree);
+            anInstanceTone.SetActive(false);
+            anInstanceTtwo.SetActive(false);
+            anInstanceTthree.SetActive(false);
         }
         
     }
@@ -64,16 +89,42 @@ public class ThrowingStuff : MonoBehaviour
     {
         if (_launched)
         {
-            Throw();
+            InitiateThrow();
         }
     }
 
-    private void Throw()
+    private void InitiateThrow()
     {
+        if (Player.GetMoney() < 1000)
+        {
+            //Get the next instance from the queue:
+            GameObject anInstance = _throwablesTierOne.Dequeue();
+            Throw(anInstance);
+            //recycling the object:
+            _throwablesTierOne.Enqueue(anInstance);
+        } else if (Player.GetMoney() < 2000)
+        {
+            //Get the next instance from the queue:
+            GameObject anInstance = _throwablesTierTwo.Dequeue();
+            Throw(anInstance);
+            //recycling the object:
+            _throwablesTierTwo.Enqueue(anInstance);
+        }
+        else
+        {
+            //Get the next instance from the queue:
+            GameObject anInstance = _throwablesTierThree.Dequeue();
+            Throw(anInstance);
+            //recycling the object:
+            _throwablesTierThree.Enqueue(anInstance);
+        }
 
-        //Get the next instance from the queue:
-        GameObject anInstance = _throwables.Dequeue();
-        
+    }
+    
+
+    private void Throw(GameObject anInstance)
+    {
+                
         //position and rotation:
         anInstance.transform.position = new Vector3(spawnPoint.position.x,spawnPoint.position.y,spawnPoint.position.z);
         anInstance.transform.rotation = Quaternion.LookRotation(-spawnPoint.forward);
@@ -90,8 +141,5 @@ public class ThrowingStuff : MonoBehaviour
         aRigidBody.AddTorque(transform.forward, ForceMode.Impulse);
         
         _launched = false;
-        
-        //recycling the object:
-        _throwables.Enqueue(anInstance);
     }
 }

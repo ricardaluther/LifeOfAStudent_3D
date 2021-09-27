@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
         anim = gameObject.GetComponent<Animation>();
         ects = 0;
         stress = 0;
-        money = 10000;
+        money = 4000;
     }
 
     void Update()
