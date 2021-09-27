@@ -7,7 +7,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-    [Header("Player Settings")] [SerializeField]
+    [Header("Player Settings")]
+    [SerializeField]
     private static int ects;
 
     private static int stress;
@@ -32,7 +33,14 @@ public class Player : MonoBehaviour
     private Animation anim;
     private BoxCollider col;
 
-	 public AudioClip nyanCat;
+    public AudioClip nyanCat;
+    
+    [SerializeField]
+    public GameOverScreen GameOverScreen;
+
+    [SerializeField] public bool _gameOver;
+
+    public SpawnManager SpawnManager;
 
 
 
@@ -40,6 +48,7 @@ public class Player : MonoBehaviour
     {
         _drunk = false;
         _distracted = false;
+        _gameOver = false;
         _controller = GetComponent<CharacterController>();
         transform.position = new Vector3(0f, 1f, 0f);
         anim = gameObject.GetComponent<Animation>();
@@ -52,6 +61,21 @@ public class Player : MonoBehaviour
     {
         PlayerMovement();
         Player.AddMoney(-1);
+        if (money == 3800 || stress > 1)
+        {
+            GameOver();
+            Cursor.lockState = CursorLockMode.None;
+            //use nullchecks
+            Destroy(transform.parent.gameObject);
+            if (SpawnManager != null)
+            {
+                SpawnManager.onPlayerDeath();
+            }
+            else if (SpawnManager == null)
+            {
+                Debug.LogError("SpawnManager not assigned you tired idiot!");
+            }
+        }
     }
 
     void PlayerMovement()
@@ -194,7 +218,14 @@ public class Player : MonoBehaviour
             stress = 0;
         }
     }
-    
+
+    public void GameOver()
+    {
+        GameOverScreen.Setup(Player.GetEcts());
+        _gameOver = true;
+    }
+
+
     
 }
 

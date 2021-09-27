@@ -24,6 +24,9 @@ public class SpawnManager : MonoBehaviour
    [SerializeField] 
    private float _delayPowUp = 3f;
 
+   [SerializeField] 
+   public ThrowingStuff ThrowingStuff;
+
    
     
    //Controls whether prefab instances are spawned
@@ -42,7 +45,7 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-   
+
     }
 
     public Vector3 spawnLocation()
@@ -96,4 +99,13 @@ public class SpawnManager : MonoBehaviour
         //Spawn prefab in an area:
        
     }
+
+    public void onPlayerDeath()
+    {
+        _spawnStuff = false;
+        ThrowingStuff.GetComponent<ThrowingStuff>().enabled = false;
+        
+    }
+    
+    
 }

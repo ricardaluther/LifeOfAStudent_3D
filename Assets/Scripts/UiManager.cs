@@ -19,6 +19,8 @@ public class UiManager : MonoBehaviour
     [SerializeField] 
     private Text _stressText;
 
+    public GameOverScreen GameOverScreen;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,4 +36,5 @@ public class UiManager : MonoBehaviour
         _moneyText.text = "Money " + Player.GetMoney();
         _stressText.text = "Stress: " + Player.GetStress();
     }
+
 }
