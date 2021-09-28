@@ -11,9 +11,19 @@ public class Player : MonoBehaviour
     [SerializeField]
     private static int ects;
 
+    public static readonly int EctsStart = 0;
+    public static readonly int EctsMax = 180;
+    
+
     private static int stress;
+    
+    public static readonly int StressStart = 0;
+    public static readonly int StressMax = 20;
 
     private static int money;
+    
+    public static readonly int MoneyStart = 5000;
+    public static readonly int MoneyMax = 5000;
 
     public bool _drunk = false;
     private float _soberingTime = 10f;
@@ -52,16 +62,16 @@ public class Player : MonoBehaviour
         _controller = GetComponent<CharacterController>();
         transform.position = new Vector3(0f, 1f, 0f);
         anim = gameObject.GetComponent<Animation>();
-        ects = 0;
-        stress = 0;
-        money = 4000;
+        ects = EctsStart;
+        stress = StressStart;
+        money = MoneyStart;
     }
 
     void Update()
     {
         PlayerMovement();
         Player.AddMoney(-1);
-        if (money == 3800 || stress > 1)
+        if (money == 0 || stress > StressMax)
         {
             GameOver();
             Cursor.lockState = CursorLockMode.None;
