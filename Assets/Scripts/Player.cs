@@ -47,6 +47,8 @@ public class Player : MonoBehaviour
     
     [SerializeField]
     public GameOverScreen GameOverScreen;
+    [SerializeField]
+    public WinScreen WinScreen;
 
     [SerializeField] public bool _gameOver;
 
@@ -74,6 +76,21 @@ public class Player : MonoBehaviour
         if (money == 0 || stress > StressMax)
         {
             GameOver();
+            Cursor.lockState = CursorLockMode.None;
+            //use nullchecks
+            Destroy(transform.parent.gameObject);
+            if (SpawnManager != null)
+            {
+                SpawnManager.onPlayerDeath();
+            }
+            else if (SpawnManager == null)
+            {
+                Debug.LogError("SpawnManager not assigned you tired idiot!");
+            }
+        }
+        if(ects >= 180)
+        {
+            Win();
             Cursor.lockState = CursorLockMode.None;
             //use nullchecks
             Destroy(transform.parent.gameObject);
@@ -234,7 +251,11 @@ public class Player : MonoBehaviour
         GameOverScreen.Setup(Player.GetEcts());
         _gameOver = true;
     }
-
+    public void Win()
+    {
+        WinScreen.SetupWin(Player.GetEcts());
+        _gameOver = true;
+    }
 
     
 }
