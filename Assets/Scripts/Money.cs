@@ -8,10 +8,31 @@ public class Money : MonoBehaviour
 
     private Vector3 moneyPos;
     private float _moneySpeed = 4f;
+    
+    //variables for which floor it should be spawned on
+    [SerializeField] private float floor = 7f;
+    [SerializeField] private float randFloor; 
+    
     // Start is called before the first frame update
     void Start()
     { 
-        moneyPos = new Vector3(Random.Range(-50f, 50f), 1.4f, Random.Range(-50f, 50f));
+        randFloor = Random.Range(0f, 3f);
+        
+        //decide which floor the thing should be spawned on...floor is going to be the y-coordinate
+        if (randFloor < 1)
+        {
+            floor = 0.88f;
+        }
+        else if (randFloor < 2)
+        {
+            floor = 7.01f;
+        }
+        else
+        {
+            floor = 10f;
+        }
+        
+        moneyPos = new Vector3(Random.Range(-27f, 25f), floor, Random.Range(-21f, 110f));
         transform.position = moneyPos;
     }
 
@@ -30,26 +51,26 @@ public class Money : MonoBehaviour
         //moneyPos.y = 1.7f;
     
         //check x Boundary
-        if (transform.position.x <= -49.5f)
+        if (transform.position.x <= -26.5f)
         {
-            moneyPos.x = -49.5f;
+            moneyPos.x = -26.5f;
             transform.position = moneyPos;
         }
-        else if (transform.position.x >= 49.5f)
+        else if (transform.position.x >= 24.5f)
         {
-            moneyPos.x = 49.5f;
+            moneyPos.x = 24.5f;
             transform.position = moneyPos;
         }
         
         //check z Boundary 
-        if (transform.position.z <= -49.5f)
+        if (transform.position.z <= -21.0f)
         {
-            moneyPos.z = -49.5f;
+            moneyPos.z = -21.0f;
             transform.position = moneyPos;
         }
-        else if (transform.position.z >= 49.5f)
+        else if (transform.position.z >= 109.5f)
         {
-            moneyPos.z = 49.5f;
+            moneyPos.z = 109.5f;
             transform.position = moneyPos;
         }
     }
