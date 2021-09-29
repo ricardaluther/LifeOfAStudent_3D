@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 9113125283718059089}
   - component: {fileID: 8703939119738312578}
   - component: {fileID: 4776263723534178006}
-  - component: {fileID: 2171621561998068987}
-  - component: {fileID: 624332786760185100}
+  - component: {fileID: 5760767755031499820}
   m_Layer: 0
   m_Name: phone512
   m_TagString: Phone
@@ -112,7 +111,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   phoneShatter: {fileID: 8300000, guid: 5b7cd7bc3cb32b840bb16f5c55ae8463, type: 3}
---- !u!95 &2171621561998068987
+  floor: 7
+  randFloor: 0
+--- !u!95 &5760767755031499820
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -131,18 +132,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!111 &624332786760185100
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1097831856457328940}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 724ae21676d9f794bb71e69bd57878f3, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
