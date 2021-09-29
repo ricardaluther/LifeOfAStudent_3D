@@ -24,7 +24,7 @@ public class Pizza : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             //TODO get food points
-            
+            Player.AddStress(-5);
             AudioSource.PlayClipAtPoint(Eat, transform.position);
 			//before op
             //Destroy(this.gameObject);

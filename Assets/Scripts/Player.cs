@@ -9,21 +9,25 @@ public class Player : MonoBehaviour
 
     [Header("Player Settings")]
     [SerializeField]
+    //Variables for ects, as well as the start and maximum value:
     private static int ects;
-
     public static readonly int EctsStart = 0;
     public static readonly int EctsMax = 180;
     
-
+    //Variables for stress, as well as the start and maximum value:
     private static int stress;
-    
     public static readonly int StressStart = 0;
     public static readonly int StressMax = 20;
-
-    private static int money;
     
+    //Variables for money, as well as the start and maximum value:
+    private static int money;
     public static readonly int MoneyStart = 5000;
     public static readonly int MoneyMax = 5000;
+    
+    //Values for the transition between different throwing tiers:
+    public static readonly int Tier2Border = 3500;
+    public static readonly int Tier1Border = 1500;
+    
 
     public bool _drunk = false;
     private float _soberingTime = 10f;
@@ -73,7 +77,7 @@ public class Player : MonoBehaviour
     {
         PlayerMovement();
         Player.AddMoney(-1);
-        if (money == 0 || stress > StressMax)
+        if (stress > StressMax)
         {
             GameOver();
             Cursor.lockState = CursorLockMode.None;

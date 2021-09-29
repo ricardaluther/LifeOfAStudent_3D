@@ -176,11 +176,17 @@ public class Book : MonoBehaviour
     {
         //Debug.Log(other.name);
 
+        //Add Stress:
         if (other.CompareTag("Player"))
         {
-			//reduce the points or something of player
-            Player.AddStress(1);
-            
+            if (Player.GetMoney() == 0)
+            {
+                Player.AddStress(10);
+            }
+            else
+            {
+                Player.AddStress(1);
+            }
             AudioSource.PlayClipAtPoint(failure, transform.position);
             //Debug.LogWarning("Book hit Player:O");
             this.gameObject.SetActive(false); // maybe implement this later when we actually spawn more of them...

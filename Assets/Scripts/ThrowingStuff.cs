@@ -95,14 +95,14 @@ public class ThrowingStuff : MonoBehaviour
 
     private void InitiateThrow()
     {
-        if (Player.GetMoney() < 1000)
+        if (Player.GetMoney() < Player.Tier1Border)
         {
             //Get the next instance from the queue:
             GameObject anInstance = _throwablesTierOne.Dequeue();
             Throw(anInstance);
             //recycling the object:
             _throwablesTierOne.Enqueue(anInstance);
-        } else if (Player.GetMoney() < 2000)
+        } else if (Player.GetMoney() < Player.Tier2Border)
         {
             //Get the next instance from the queue:
             GameObject anInstance = _throwablesTierTwo.Dequeue();
