@@ -103,7 +103,7 @@ public class SpawnManager : MonoBehaviour
     public void onPlayerDeath()
     {
         _spawnStuff = false;
-        ThrowingStuff.GetComponent<ThrowingStuff>().enabled = false;
+        //ThrowingStuff.GetComponent<ThrowingStuff>().enabled = false;
         
     }
     

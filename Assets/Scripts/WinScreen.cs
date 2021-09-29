@@ -6,9 +6,15 @@ using UnityEngine.UI;
 public class WinScreen : MonoBehaviour
 {
     public Text pointsText;
+    public Slider ectsSlider;
+    public Slider moneySlider;
+    public Slider stressSlider;
     
     public void SetupWin(int score)
     {
+        ectsSlider.gameObject.SetActive(false); 
+        moneySlider.gameObject.SetActive(false);
+        stressSlider.gameObject.SetActive(false);
         gameObject.SetActive(true);
         pointsText.text = score.ToString() + " Credits";
     }

@@ -53,19 +53,18 @@ public class Player : MonoBehaviour
     public GameOverScreen GameOverScreen;
     [SerializeField]
     public WinScreen WinScreen;
-
-    [SerializeField] public bool _gameOver;
-
+    [SerializeField]
     public SpawnManager SpawnManager;
-
-
+    
+    [SerializeField]
+    public AudioListener audioListener;
 
     void Start()
     {
         _drunk = false;
         _distracted = false;
-        _gameOver = false;
         _controller = GetComponent<CharacterController>();
+        audioListener = GetComponent<AudioListener>();
         transform.position = new Vector3(0f, 1f, 0f);
         anim = gameObject.GetComponent<Animation>();
         ects = EctsStart;
@@ -77,12 +76,22 @@ public class Player : MonoBehaviour
     {
         PlayerMovement();
         Player.AddMoney(-1);
+        if (audioListener != null && audioListener != this.audioListener)
+        {
+            Destroy(this.gameObject);
+        }
+        else if(audioListener == null)
+        {
+            audioListener = GetComponent<AudioListener>();
+        }
         if (stress > StressMax)
         {
+            
+            audioListener.enabled = false;
             GameOver();
             Cursor.lockState = CursorLockMode.None;
             //use nullchecks
-            Destroy(transform.parent.gameObject);
+            //Destroy(transform.parent.gameObject);
             if (SpawnManager != null)
             {
                 SpawnManager.onPlayerDeath();
@@ -94,10 +103,11 @@ public class Player : MonoBehaviour
         }
         if(ects >= 180)
         {
+            audioListener.enabled = false;
             Win();
             Cursor.lockState = CursorLockMode.None;
             //use nullchecks
-            Destroy(transform.parent.gameObject);
+            //Destroy(transform.parent.gameObject);
             if (SpawnManager != null)
             {
                 SpawnManager.onPlayerDeath();
@@ -107,6 +117,7 @@ public class Player : MonoBehaviour
                 Debug.LogError("SpawnManager not assigned you tired idiot!");
             }
         }
+    
     }
 
     void PlayerMovement()
@@ -253,12 +264,10 @@ public class Player : MonoBehaviour
     public void GameOver()
     {
         GameOverScreen.Setup(Player.GetEcts());
-        _gameOver = true;
     }
     public void Win()
     {
         WinScreen.SetupWin(Player.GetEcts());
-        _gameOver = true;
     }
 
     
