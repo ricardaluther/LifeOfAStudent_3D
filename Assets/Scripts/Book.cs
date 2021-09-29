@@ -72,7 +72,7 @@ public class Book : MonoBehaviour
         rewriteDesPos();
 		
 		//decide whether the book will have the attack function
-		if (Random.Range(0f, 10f) > 9f)
+		if (Random.Range(0.0f, 10.0f) > 7.0f)
 		{
 			isAttacker = true;
 		}
@@ -107,8 +107,13 @@ public class Book : MonoBehaviour
         if ((timer3 >= TimeToAttack) && isAttacker)
         {
             playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
-			AudioSource.PlayClipAtPoint(danger, desiredPos);
+
+			
             transform.position = Vector3.Lerp(transform.position, playerPos, Time.deltaTime * speed);
+			if(Vector3.Distance(transform.position, playerPos) > 4.0f && Vector3.Distance(transform.position, playerPos) < 4.4f)
+			{
+				AudioSource.PlayClipAtPoint(danger, transform.position);
+			}
             if (Vector3.Distance(transform.position, playerPos) <= 0.1f)
             {
                 
@@ -222,7 +227,7 @@ public class Book : MonoBehaviour
             }
             AudioSource.PlayClipAtPoint(failure, transform.position);
             //Debug.LogWarning("Book hit Player:O");
-            this.gameObject.SetActive(false); // maybe implement this later when we actually spawn more of them...
+             // maybe implement this later when we actually spawn more of them...
             
         }
         else if (other.CompareTag("Projectile"))
