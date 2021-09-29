@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 9113125283718059089}
   - component: {fileID: 8703939119738312578}
   - component: {fileID: 4776263723534178006}
+  - component: {fileID: 2171621561998068987}
+  - component: {fileID: 624332786760185100}
   m_Layer: 0
   m_Name: phone512
   m_TagString: Phone
@@ -28,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1097831856457328940}
   m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
-  m_LocalPosition: {x: 0.44480515, y: 2.3244002, z: 0.37490323}
+  m_LocalPosition: {x: 0.4448051, y: 2.3244002, z: 0.3749032}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
@@ -110,3 +112,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   phoneShatter: {fileID: 8300000, guid: 5b7cd7bc3cb32b840bb16f5c55ae8463, type: 3}
+--- !u!95 &2171621561998068987
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097831856457328940}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 26c3e25016e97fe4c8d59be986ba9a85, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!111 &624332786760185100
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097831856457328940}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 724ae21676d9f794bb71e69bd57878f3, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
