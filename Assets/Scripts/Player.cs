@@ -235,13 +235,21 @@ public class Player : MonoBehaviour
 
     public static void AddMoney(int amount)
     {
-        if (money + amount > 0)
+        if (money + amount > 0 && money + amount <= Player.MoneyMax)
         {
             money += amount;
         }
-        else
+        else if(money + amount <= 0)
         {
             money = 0;
+        }
+        else if(money + amount <= Player.MoneyMax + 250)
+        {
+            money = money + amount;
+        }
+        else
+        {
+            money = Player.MoneyMax + 250;
         }
     }
 

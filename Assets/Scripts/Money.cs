@@ -82,7 +82,7 @@ public class Money : MonoBehaviour
         // if the object we collide with is the student he gets the money
         if(other.CompareTag("Player"))
         {
-            Player.AddMoney(1000);
+            Player.AddMoney(2000);
             AudioSource.PlayClipAtPoint(MoneyABBA, transform.position);
 			//before object pooling
             //Destroy(this.gameObject);

@@ -233,7 +233,7 @@ public class Book : MonoBehaviour
         else if (other.CompareTag("Projectile"))
         {
             Player.AddStress(-1);
-            Player.AddEcts(10);
+            Player.AddEcts(5);
 			AudioSource.PlayClipAtPoint(good, transform.position);
  			AudioSource.PlayClipAtPoint(blätter, transform.position);
             this.gameObject.SetActive(false);
