@@ -159,19 +159,20 @@ public class Player : MonoBehaviour
         {
             _controller.Move(playerTranslate * _speed * Time.deltaTime);
         }
-        else if (_drunk && !_caffeinated)
+        else if (_drunk && !_caffeinated && !_distracted)
         {
             _controller.Move(new Vector3(-playerTranslate.x, playerTranslate.y, -playerTranslate.z) * _speed * Time.deltaTime);
         }
-        else if (!_drunk && _caffeinated)
+        else if (!_drunk && _caffeinated && !_distracted)
         {
             _controller.Move(playerTranslate * _speed * 3 * Time.deltaTime);
         }
-        else if (_drunk && _caffeinated)
+        else if (_drunk && _caffeinated && !_distracted)
         {
             _controller.Move(new Vector3(-playerTranslate.x, playerTranslate.y, -playerTranslate.z) * _speed * 3 *
                              Time.deltaTime);
         }
+        
     }
 
     //gets called, when the player enters an ActivePoint
