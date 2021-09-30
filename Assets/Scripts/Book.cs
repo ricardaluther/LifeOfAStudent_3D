@@ -38,7 +38,7 @@ public class Book : MonoBehaviour
 
     [Header("Koordinaten")]
     [SerializeField] private float xPos;
-    [SerializeField] private float yPos = 0.88f;
+    [SerializeField] private float yPos = 1.0f;
     [SerializeField] private float zPos;
 
     [SerializeField] private Vector3 lastPlayerPos;
@@ -93,7 +93,7 @@ public class Book : MonoBehaviour
         {
             lastPlayerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
             timer4 = 0.0f;
-            closetoPlayer = new Vector3(lastPlayerPos.x + Random.Range(-10.0f, 10.0f), lastPlayerPos.y, lastPlayerPos.z + Random.Range(-10.0f, 10.0f));
+            closetoPlayer = new Vector3(lastPlayerPos.x + Random.Range(-10.0f, 10.0f), lastPlayerPos.y + 0.6f, lastPlayerPos.z + Random.Range(-10.0f, 10.0f));
         }
     }
 
@@ -107,6 +107,7 @@ public class Book : MonoBehaviour
         if ((timer3 >= TimeToAttack) && isAttacker)
         {
             playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
+			playerPos = new Vector3(playerPos.x, playerPos.y+0.5f, playerPos.z);
 
 			
             transform.position = Vector3.Lerp(transform.position, playerPos, Time.deltaTime * speed);
@@ -156,24 +157,24 @@ public class Book : MonoBehaviour
 
         //new x
         xPos = transform.position.x + Random.Range(-20f, 20f);
-        if (xPos < -50f)
+        if (xPos < -27f)
         {
-            xPos = -50f;
+            xPos = -27f;
         }
-        else if (xPos > 50f)
+        else if (xPos >250f)
         {
-            xPos = 50f;
+            xPos = 25f;
         }
         
         //new z
         zPos = transform.position.z + Random.Range(-10f, 10f);
-        if (zPos < -50f)
+        if (zPos < -21f)
         {
-            zPos = -50f;
+            zPos = -21f;
         }
-        else if (zPos > 50f)
+        else if (zPos > 110f)
         {
-            zPos = 50f;
+            zPos = 110f;
         }
     
         //new Position
