@@ -223,7 +223,7 @@ public class Book : MonoBehaviour
             }
             else
             {
-                Player.AddStress(1);
+                Player.AddStress(2);
             }
             AudioSource.PlayClipAtPoint(failure, transform.position);
             //Debug.LogWarning("Book hit Player:O");
